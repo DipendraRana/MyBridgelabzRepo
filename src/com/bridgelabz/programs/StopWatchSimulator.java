@@ -1,6 +1,7 @@
 /***********************************************
- * purpose : Computes the prime factorization of
- * 			 N using brute force.
+ * purpose : Write a Stopwatch Program for
+ * 			 measuring the time that elapses
+ * 			 between the start and end clicks.
  *           
  * @author Dipendra Rana
  * @version 1.0
@@ -9,18 +10,13 @@
 
 package com.bridgelabz.programs;
 
-import java.util.Scanner;
-
 import com.bridgelabz.utility.Utility;
 
-public class PrimeFactors {
-
-	public static Scanner input = new Scanner(System.in);
+public class StopWatchSimulator {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int number = input.nextInt();
-		Utility.primeFactorization(number);
+		Utility.stopWatchSimulator();
 	}
 
 }

@@ -1,6 +1,9 @@
 /***********************************************
- * purpose : Computes the prime factorization of
- * 			 N using brute force.
+ * purpose : Write a Program to play a Cross
+ * 			 Game or Tic-Tac-Toe Game. Player 1
+ * 			 is the Computer and the Player 2 is
+ * 			 the user. Player 1 take Random Cell
+ * 			 that is the Column and Row. 
  *           
  * @author Dipendra Rana
  * @version 1.0
@@ -9,18 +12,12 @@
 
 package com.bridgelabz.programs;
 
-import java.util.Scanner;
-
-import com.bridgelabz.utility.Utility;
-
-public class PrimeFactors {
-
-	public static Scanner input = new Scanner(System.in);
+public class TicTacToe {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int number = input.nextInt();
-		Utility.primeFactorization(number);
+		char[][] board=new char[3][3];
+
 	}
 
 }

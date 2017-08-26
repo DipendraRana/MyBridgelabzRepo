@@ -5,7 +5,7 @@
  * 			 them out to standard output.
  *           
  * @author Dipendra Rana
- * @version 1.0
+ * @version 2.0
  * @since 24 August 2017          
  ***********************************************/
 
@@ -21,11 +21,13 @@ public class TwoDArrays {
 	public static void main(String args[]) {
 		int row = input.nextInt();
 		int coloumn = input.nextInt();
-		System.out.println("Input Integer");
-		Utility.arrayDisplay(row, coloumn, Utility.intArrayIn(row, coloumn));
-		System.out.println("Input Double");
-		Utility.arrayDisplay(row, coloumn, Utility.doubleArrayIn(row, coloumn));
-		System.out.println("Input Boolean");
-		Utility.arrayDisplay(row, coloumn, Utility.booleanArrayIn(row, coloumn));
+		/*
+		 * System.out.println("Choose the type of Array:");
+		 * System.out.println("1: Integer"); System.out.println("2: Boolean");
+		 * System.out.println("3: Double");
+		 */
+		int choose = input.nextInt();
+		Utility.arrayDisplay(row, coloumn, Utility.genericTwoDArray(row, coloumn, 
+							choose));
 	}
 }
