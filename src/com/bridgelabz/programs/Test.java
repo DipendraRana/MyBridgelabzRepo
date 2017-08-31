@@ -1,6 +1,6 @@
 package com.bridgelabz.programs;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Test {
@@ -9,20 +9,28 @@ public class Test {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int row=input.nextInt();
-		int coloumn=input.nextInt();
-		ArrayList<ArrayList<Integer>> array=new ArrayList<ArrayList<Integer>>();
-		for(int i=0;i<row;i++)
-			array.add(new ArrayList<Integer>());
-		for(int i=0;i<row;i++) {
-			for(int j=0;j<coloumn;j++)
-				array.get(i).add(input.nextInt());
-		}
-		for(int i=0;i<row;i++) {
-			for(int j=0;j<coloumn;j++)
-				System.out.format("%2d",array.get(i).get(j));
-			System.out.println();
-		}
+		String s=input.next();
+		char save[]=s.toCharArray();
+		String[] store=new String[save.length];
+		store[0]=s;
+		int j=save.length,k;
+		char temp;
+		//for(i=0;i<j;i++) {
+			for(k=j-1;k!=0;k--) {
+				temp=save[k-1];
+				save[k-1]=save[j-1];
+				save[j-1]=temp;
+				System.out.println(Arrays.toString(save));
+			}
+			while(k>j-1) {
+				temp=save[k+1];
+				save[k+1]=save[j-1];
+				save[j-1]=temp;
+				k++;
+				System.out.println(Arrays.toString(save));
+			}
+		//}
+		
 	}
 
 }

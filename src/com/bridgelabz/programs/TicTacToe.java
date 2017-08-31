@@ -7,17 +7,18 @@
  *           
  * @author Dipendra Rana
  * @version 1.0
- * @since 26 August 2017          
+ * @since 28 August 2017          
  ***********************************************/
 
 package com.bridgelabz.programs;
+
+import com.bridgelabz.utility.Utility;
 
 public class TicTacToe {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		char[][] board=new char[3][3];
-
+		Utility.ticTacToeSimulator();
 	}
 
 }
