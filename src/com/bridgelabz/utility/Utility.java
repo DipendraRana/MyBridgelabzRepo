@@ -10,6 +10,7 @@ package com.bridgelabz.utility;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Utility {
@@ -25,6 +26,8 @@ public class Utility {
 	public static String[] weeks= {"SUN","MON","TUE","WED","THU","FRI","SAT"};
 	
 	public static int[] daysInMonth= {31,28,31,30,31,30,31,31,30,31,30,31,30,31};
+	
+	public static int middleIndex=0;
 	
 	public static void couponGenerator(int number) {
 		int iteration = 0, randomNum;
@@ -238,7 +241,7 @@ public class Utility {
 		}
 	}
 	
-	public static void stopWatchSimulator() {
+	public static <T> void stopWatchSimulator() {
 		long startTime=System.currentTimeMillis();
 		long total = 0;
 	    for (int i = 0; i < 200000000; i++) {
@@ -513,5 +516,109 @@ public class Utility {
 					calender[i][j]=Integer.toString(k);
 			}
 		}
+	}
+
+	public static void binarySearchInteger(int[] array,int searchingElement,
+											int startingIndex,int lastIndex) {
+		middleIndex=(startingIndex+lastIndex)/2;
+		if(searchingElement==array[middleIndex])
+			System.out.println("Found the Element");
+		else if(startingIndex==lastIndex)
+			System.out.println("There is no such Element");
+		else {
+			if(array[middleIndex]>searchingElement)
+				binarySearchInteger(array,searchingElement,startingIndex,middleIndex);
+			else
+				binarySearchInteger(array,searchingElement,middleIndex+1,lastIndex);
+		}			
+	}
+	
+	public static void binarySearchString(String[] array,String searchingWord,
+											int startingIndex,int lastIndex) {
+		middleIndex=(startingIndex+lastIndex)/2;
+		if(searchingWord==array[middleIndex])
+			System.out.println("Found the Word");
+		else if(startingIndex==lastIndex)
+			System.out.println("There is no such element");
+		else {
+			if(array[middleIndex].compareToIgnoreCase(searchingWord)>0)	
+				binarySearchString(array,searchingWord,startingIndex,middleIndex);
+			else
+				binarySearchString(array,searchingWord,middleIndex+1,lastIndex);				
+		}
+	}
+	
+	public static void bubbleSortInt(int[] array) {
+		System.out.println(Arrays.toString(array));
+		for(int i=0;i<array.length;i++) {
+			for(int j=1;j<array.length;j++) { 
+				if(array[j-1]>array[j]) {
+					int temporary=array[j-1];
+					array[j-1]=array[j];
+					array[j]=temporary;
+				}
+			}
+		}
+	}
+	
+	public static void bubbleSortString(String[] array) {
+		for(int i=0;i<array.length;i++) {
+			for(int j=1;j<array.length;j++) 
+				if(array[j-1].compareToIgnoreCase(array[j])>0) {
+					String temporary=array[j-1];
+					array[j-1]=array[j];
+					array[j]=temporary;
+				}
+		}
+	}
+
+	public static void insertionSortInt(int[] array) {
+		for(int i=0;i<array.length;i++) {
+			int insertingElement=array[i];
+			for(int j=0;j<=i;j++) {
+				if(array[i]<array[j]) {
+					for(int k=i;k>j;k--)
+						array[k]=array[k-1];
+					array[j]=insertingElement;
+				}
+			}
+		}
+	}
+
+	public static void insertionSortString(String[] array) {
+		for(int i=0;i<array.length;i++) {
+			String insertingElement=array[i];
+			for(int j=0;j<=i;j++) {
+				if(array[j].compareToIgnoreCase(array[i])>0) {
+					for(int k=i;k>j;k--)
+						array[k]=array[k-1];
+					array[j]=insertingElement;
+				}
+			}
+		}
+	}
+
+	public static void insertingIntElement(int[] intArray) {
+		System.out.println("Insert Integer element");
+		for(int i=0;i<intArray.length;i++)
+			intArray[i]=scan.nextInt();
+	}
+	
+	public static void insertingStringElement(String[] stringArray) {
+		System.out.println("Insert String element");
+		for(int i=0;i<stringArray.length;i++)
+			stringArray[i]=scan.next();
+	}
+
+	public static void sortingElapsedTime(long[] array) {
+		for(int i=0;i<array.length;i++) {
+			for(int j=1;j<array.length;j++)
+				if(array[j-1]<array[j]) {
+					long temporary=array[j-1];
+					array[j-1]=array[j];
+					array[j]=temporary;
+				}
+		}
+		System.out.println("elapsed times performance(millisecond):"+Arrays.toString(array));
 	}
 }
