@@ -29,6 +29,10 @@ public class Utility {
 	
 	public static int middleIndex=0;
 	
+	public static long startTime,stopTime;
+	
+	public static long[] elapsedTime=new long[2];
+	
 	public static void couponGenerator(int number) {
 		int iteration = 0, randomNum;
 		int storeElement[] = new int[number];
@@ -241,7 +245,7 @@ public class Utility {
 		}
 	}
 	
-	public static <T> void stopWatchSimulator() {
+	public static void stopWatchSimulator() {
 		long startTime=System.currentTimeMillis();
 		long total = 0;
 	    for (int i = 0; i < 200000000; i++) {
@@ -518,96 +522,19 @@ public class Utility {
 		}
 	}
 
-	public static void binarySearchInteger(int[] array,int searchingElement,
-											int startingIndex,int lastIndex) {
-		middleIndex=(startingIndex+lastIndex)/2;
-		if(searchingElement==array[middleIndex])
-			System.out.println("Found the Element");
-		else if(startingIndex==lastIndex)
-			System.out.println("There is no such Element");
+	@SuppressWarnings("unchecked")
+	public static <T extends Comparable<T>> void insertingElement(T[] array) {
+		if(array instanceof String[] ) {
+			System.out.println("Insert String element");
+			for(int i=0;i<array.length;i++)
+				array[i]=(T) scan.next();
+		}
 		else {
-			if(array[middleIndex]>searchingElement)
-				binarySearchInteger(array,searchingElement,startingIndex,middleIndex);
-			else
-				binarySearchInteger(array,searchingElement,middleIndex+1,lastIndex);
-		}			
-	}
-	
-	public static void binarySearchString(String[] array,String searchingWord,
-											int startingIndex,int lastIndex) {
-		middleIndex=(startingIndex+lastIndex)/2;
-		if(searchingWord==array[middleIndex])
-			System.out.println("Found the Word");
-		else if(startingIndex==lastIndex)
-			System.out.println("There is no such element");
-		else {
-			if(array[middleIndex].compareToIgnoreCase(searchingWord)>0)	
-				binarySearchString(array,searchingWord,startingIndex,middleIndex);
-			else
-				binarySearchString(array,searchingWord,middleIndex+1,lastIndex);				
-		}
-	}
-	
-	public static void bubbleSortInt(int[] array) {
-		System.out.println(Arrays.toString(array));
-		for(int i=0;i<array.length;i++) {
-			for(int j=1;j<array.length;j++) { 
-				if(array[j-1]>array[j]) {
-					int temporary=array[j-1];
-					array[j-1]=array[j];
-					array[j]=temporary;
-				}
-			}
-		}
-	}
-	
-	public static void bubbleSortString(String[] array) {
-		for(int i=0;i<array.length;i++) {
-			for(int j=1;j<array.length;j++) 
-				if(array[j-1].compareToIgnoreCase(array[j])>0) {
-					String temporary=array[j-1];
-					array[j-1]=array[j];
-					array[j]=temporary;
-				}
-		}
-	}
-
-	public static void insertionSortInt(int[] array) {
-		for(int i=0;i<array.length;i++) {
-			int insertingElement=array[i];
-			for(int j=0;j<=i;j++) {
-				if(array[i]<array[j]) {
-					for(int k=i;k>j;k--)
-						array[k]=array[k-1];
-					array[j]=insertingElement;
-				}
-			}
-		}
-	}
-
-	public static void insertionSortString(String[] array) {
-		for(int i=0;i<array.length;i++) {
-			String insertingElement=array[i];
-			for(int j=0;j<=i;j++) {
-				if(array[j].compareToIgnoreCase(array[i])>0) {
-					for(int k=i;k>j;k--)
-						array[k]=array[k-1];
-					array[j]=insertingElement;
-				}
-			}
-		}
-	}
-
-	public static void insertingIntElement(int[] intArray) {
-		System.out.println("Insert Integer element");
-		for(int i=0;i<intArray.length;i++)
-			intArray[i]=scan.nextInt();
-	}
-	
-	public static void insertingStringElement(String[] stringArray) {
-		System.out.println("Insert String element");
-		for(int i=0;i<stringArray.length;i++)
-			stringArray[i]=scan.next();
+			System.out.println("Insert Integer element");
+			for(int i=0;i<array.length;i++)
+				array[i]=(T) Integer.valueOf(scan.nextInt());
+		}	
+		
 	}
 
 	public static void sortingElapsedTime(long[] array) {
@@ -621,4 +548,96 @@ public class Utility {
 		}
 		System.out.println("elapsed times performance(millisecond):"+Arrays.toString(array));
 	}
+	
+	public static <T extends Comparable<T>> void binarySearch(T[] array,
+						T intElement,int startingIndex,int lastIndex) {
+		middleIndex=(startingIndex+lastIndex)/2;
+		if(intElement.equals(array[middleIndex]))
+			System.out.println("Found the Word");
+		else if(startingIndex==lastIndex)
+			System.out.println("There is no such element");
+		else {
+			if(array[middleIndex].compareTo((T) intElement)>0)	
+				binarySearch(array,intElement,startingIndex,middleIndex);
+			else
+				binarySearch(array,intElement,middleIndex+1,lastIndex);				
+		}
+	}
+	
+	public static <T extends Comparable<T>> void bubbleSort(T[] array) {
+		for(int i=0;i<array.length;i++) {
+			for(int j=1;j<array.length;j++) {
+				if(array[j-1].compareTo(array[j])>0) {
+					T temporary=array[j-1];
+					array[j-1]=array[j];
+					array[j]=temporary;
+				}
+			}	
+		}
+	}
+	
+	public static <T extends Comparable<T>>void insertionSort(T[] array) {
+		for(int i=0;i<array.length;i++) {
+			T insertingElement=array[i];
+			for(int j=0;j<=i;j++) {
+				if(array[j].compareTo(array[i])>0) {
+					for(int k=i;k>j;k--)
+						array[k]=array[k-1];
+					array[j]=insertingElement;
+				}
+			}
+		}
+	}	
+
+	public static <T> void casses(T[] array,int choice) {
+		if(array instanceof Integer[]&&(choice==1||choice==2))
+			integerType((Integer[]) array,choice);
+		else
+			stringType((String[])array,choice);
+	}
+	
+	public static void integerType(Integer[] array,int choice) {
+		startTime=System.currentTimeMillis();
+		insertingElement(array);
+		if(choice==1)
+			bubbleSort(array);
+		else
+			insertionSort(array);
+		stopTime=System.currentTimeMillis();
+		elapsedTime[0]=stopTime-startTime;
+		System.out.println(Arrays.toString(array));
+		System.out.println("Time taken is:"+elapsedTime[0]);
+		startTime=System.currentTimeMillis();
+		System.out.println("Enter the integer elment you want to search:");
+		Integer intElement=Integer.valueOf(scan.next());
+		System.out.println(intElement);
+		binarySearch(array,intElement, 0, array.length-1);
+		stopTime=System.currentTimeMillis();
+		elapsedTime[1]=stopTime-startTime;
+		System.out.println("Time taken is:"+elapsedTime[1]);
+		Utility.sortingElapsedTime(elapsedTime);
+
+	}
+	
+	public static void stringType(String[] array,int choice) {
+		startTime=System.currentTimeMillis();
+		insertingElement(array);
+		if(choice==3)
+			bubbleSort(array);
+		else
+			insertionSort(array);
+		stopTime=System.currentTimeMillis();
+		elapsedTime[0]=stopTime-startTime;
+		System.out.println(Arrays.toString(array));
+		System.out.println("Time taken is:"+elapsedTime[0]);
+		startTime=System.currentTimeMillis();
+		System.out.println("Enter the String elment you want to search:");
+		String stringElement=scan.next();
+		binarySearch(array,stringElement, 0,array.length-1);
+		stopTime=System.currentTimeMillis();
+		elapsedTime[1]=stopTime-startTime;
+		System.out.println("Time taken is:"+elapsedTime[1]);
+		Utility.sortingElapsedTime(elapsedTime);
+	}
+
 }
