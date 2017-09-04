@@ -1,3 +1,12 @@
+/***********************************************
+ * purpose : Prints the Nth harmonic number:
+ * 			 1/1 + 1/2 + ... + 1/N 
+ *           
+ * @author Dipendra Rana
+ * @version 1.0
+ * @since 26 August 2017          
+ ***********************************************/
+
 package com.bridgelabz.programs;
 
 import java.util.Scanner;

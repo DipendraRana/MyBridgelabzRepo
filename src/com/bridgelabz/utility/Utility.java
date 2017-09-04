@@ -640,4 +640,22 @@ public class Utility {
 		Utility.sortingElapsedTime(elapsedTime);
 	}
 
+	public static void moneyChangeVendingMachine(int[] denomination,int money,int lastIndex) {
+		if(denomination[lastIndex]<=money) {
+			int remainder=money%denomination[lastIndex];
+			money=money/denomination[lastIndex];
+			System.out.format("%16d  %13d",denomination[lastIndex],money);
+			System.out.println();
+			if(remainder!=0) {
+				moneyChangeVendingMachine(denomination,remainder,lastIndex-1);
+			}
+		}
+		else {
+			moneyChangeVendingMachine(denomination,money,lastIndex-1);
+		}
+	}
+
+	public static void taskScheduler() {
+		
+	}
 }
