@@ -9,6 +9,10 @@
 package com.bridgelabz.utility;
 
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -655,7 +659,41 @@ public class Utility {
 		}
 	}
 
-	public static void taskScheduler() {
-		
+	public static void guessingYourNumber(int lowerIndex,int higherIndex) {
+		int middleIndex=(lowerIndex+higherIndex)/2;
+		if(lowerIndex==higherIndex) 
+			System.out.println(middleIndex+" is the number.");
+		else {
+			System.out.println("Is your number between "+lowerIndex+" and "+middleIndex);
+			String answer1=scan.next();
+			if(answer1.contains("yes")) 
+				guessingYourNumber(lowerIndex, middleIndex);
+			else 
+				guessingYourNumber(middleIndex+1, higherIndex);
+		}		
 	}
+
+	public static void readFromFile(String address,String findWord) throws IOException {
+		@SuppressWarnings("resource")
+		BufferedReader file=new BufferedReader(new InputStreamReader(new FileInputStream(address)));		
+		String lines=null;
+		ArrayList<String> words=new ArrayList<String>();
+		while((lines=file.readLine())!=null)
+			words.add(lines);
+		String[] cloneWords=words.toArray(new String[words.size()]);
+		for(int i=0;i<cloneWords.length;i++) {
+			cloneWords[i]=cloneWords[i].replaceAll("[()?:!.,;{}]+", "");
+		}
+		words.clear();
+		for(int i=0;i<cloneWords.length;i++) {
+			ArrayList<String> newWords=new ArrayList<String>(Arrays.asList(cloneWords[i].split("\\s+")));
+			for(int j=0;j<newWords.size();j++)
+				words.add(newWords.get(j));
+		}
+		cloneWords=words.toArray(new String[words.size()]);
+		bubbleSort(cloneWords);
+		binarySearch(cloneWords,findWord,0,cloneWords.length-1);
+		//System.out.println(Arrays.toString(cloneWords));		
+	}
+
 }
