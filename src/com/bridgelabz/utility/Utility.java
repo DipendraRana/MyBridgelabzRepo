@@ -533,6 +533,21 @@ public class Utility {
 			for(int i=0;i<array.length;i++)
 				array[i]=(T) scan.next();
 		}
+		else if(array instanceof Float[]) {
+			System.out.println("Insert Float element");
+			for(int i=0;i<array.length;i++)
+				array[i]=(T) Float.valueOf(scan.nextFloat());
+		}
+		else if(array instanceof Double[]) {
+			System.out.println("Insert Double element");
+			for(int i=0;i<array.length;i++)
+				array[i]=(T) Double.valueOf(scan.nextDouble());
+		}
+		else if(array instanceof Boolean[]) {
+			System.out.println("Insert Float element");
+			for(int i=0;i<array.length;i++)
+				array[i]=(T) Boolean.valueOf(scan.nextBoolean());
+		}
 		else {
 			System.out.println("Insert Integer element");
 			for(int i=0;i<array.length;i++)
@@ -696,4 +711,67 @@ public class Utility {
 		//System.out.println(Arrays.toString(cloneWords));		
 	}
 
+	public static <T extends Comparable<T>> void merge(T[] array,int lowerIndex,int middleIndex,int higherIndex) {
+		int sizeOfLeftArray=(middleIndex-lowerIndex)+1;
+		int sizeOfRightArray=higherIndex-middleIndex;
+		ArrayList<T> leftArray=new ArrayList<T>();;
+		ArrayList<T> rightArray=new ArrayList<T>();;
+		int k=0,i=0,j=0;
+		for(i=lowerIndex;i<=middleIndex;i++) {
+			leftArray.add(array[i]);
+			k++;
+		}
+		k=0;
+		for(i=middleIndex+1;i<=higherIndex;i++) {
+			rightArray.add(array[i]);
+			k++;
+		}
+		i=0;
+		k=0;
+		while(i<sizeOfLeftArray&&j<sizeOfRightArray) {
+			if((leftArray.get(i)).compareTo(rightArray.get(j))<0||leftArray.get(i).compareTo(rightArray.get(j))==0) {
+				array[lowerIndex+k]=leftArray.get(i);
+				i++;
+			}	
+			else {
+				array[lowerIndex+k]=rightArray.get(j);
+				j++;
+			}
+			k++;
+		}
+		while(i<sizeOfLeftArray||j<sizeOfRightArray) {
+			if(i<sizeOfLeftArray) {
+				array[lowerIndex+k]=leftArray.get(i);
+				i++;
+			}
+			else {
+				array[lowerIndex+k]=rightArray.get(j);
+				j++;
+			}
+			k++;
+		}
+	}
+	
+	public static <T extends Comparable<T>> void mergeSort(T[] array,int lowerIndex,int higherIndex) {
+		if(lowerIndex<higherIndex) {
+			int middleIndex=(lowerIndex+higherIndex)/2;
+			mergeSort(array,lowerIndex,middleIndex);
+			mergeSort(array,middleIndex+1,higherIndex);
+			merge(array,lowerIndex,middleIndex,higherIndex);
+		}
+	}
+
+	/*public static void stringPermutationRecursion(String[] word,int startingIndex,int lastIndex) {
+		String[] newWord=word;
+		
+				
+		
+	}
+	
+	public static void swap(String[] array,int constantIndex,int incrimentalIndex) {
+		String temp=array[constantIndex];
+		array[constantIndex]=array[incrimentalIndex];
+		array[incrimentalIndex]=temp;
+		
+	}*/
 }
