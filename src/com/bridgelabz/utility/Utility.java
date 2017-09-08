@@ -9,13 +9,18 @@
 package com.bridgelabz.utility;
 
 import java.util.Scanner;
+import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Utility {
 
@@ -35,6 +40,8 @@ public class Utility {
 	
 	public static long startTime,stopTime;
 	
+	public static int incriment=0;
+	
 	public static long[] elapsedTime=new long[2];
 	
 	public static void couponGenerator(int number) {
@@ -51,7 +58,7 @@ public class Utility {
 		}
 		System.out.println(count);
 	}
-
+	
 	public static boolean checkArray(int index, int radomNum, int array[]) {
 		int found = 0;
 		if (index == 0)
@@ -69,7 +76,7 @@ public class Utility {
 				return true;
 		}
 	}
-
+	
 	public static <generic> void arrayDisplay(int row, int coloumn, 
 								ArrayList<ArrayList<generic>> array) {
 		for (int i = 0; i < row; i++) {
@@ -92,14 +99,14 @@ public class Utility {
 		}
 		System.out.println("The no. of such distinct tripletpairs are = " + count);
 	}
-
+	
 	public static void replaceName(String name) {
 		if (name.length() >= 3)
 			System.out.println("Hello " + name + " ,How are you?");
 		else
 			System.out.println("Name should be greater than 3 characters");
 	}
-
+	
 	public static void percentageHorT(int times) {
 		double countT = 0, countH = 0;
 		if (times >= 1) {
@@ -113,7 +120,7 @@ public class Utility {
 			System.out.println("Tail appeared " + ((countT / times) * 100) + "%");
 		}
 	}
-
+	
 	public static boolean leapYearFinder(int year) {
 		if (Utility.numberOfDigitChecker(year) == 4) {
 			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
@@ -126,7 +133,7 @@ public class Utility {
 		else
 			return false;
 	}
-
+	
 	public static int numberOfDigitChecker(int number) {
 		while (number != 0) {
 			number = number / 10;
@@ -134,7 +141,7 @@ public class Utility {
 		}
 		return count;
 	}
-
+	
 	public static void powerOf2(int power) {
 		if (power >= 0 || power < 31) {
 			for (int i = 0; i < power; i++) {
@@ -142,7 +149,7 @@ public class Utility {
 			}
 		}
 	}
-
+	
 	public static void harmoninumber(int times) {
 		double harmonicsum;
 		for (double i = 0; i < times; i++) {
@@ -152,7 +159,7 @@ public class Utility {
 			System.out.println("H" + (int) (i + 1) + " = " + harmonicsum);
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public static <T> T genericTwoDArray(int row, int coloumn, int choose) {
 		ArrayList<ArrayList<T>> twoDArray = new ArrayList<ArrayList<T>>();
@@ -197,7 +204,7 @@ public class Utility {
 		else
 			return false;
 	}
-
+	
 	public static void gamblingSimulator(int stake,int goal,int noOfTimes) {
 		int win=0;
 		for(int i=0;i<noOfTimes;i++) {
@@ -221,7 +228,7 @@ public class Utility {
 		System.out.println("Euclidean distance from the point ("+xPoint+","+yPoint+
 							") to the origin (0,0) is "+distance);
 	}
-
+	
 	public static void quadraticRootFinder(int aValue,int bValue,int cValue) {
 		double root1,root2;
 		int delta=(int)Math.pow(bValue, 2)-(4*aValue*cValue);
@@ -258,7 +265,7 @@ public class Utility {
 		long stopTime=System.currentTimeMillis();
 		System.out.println(stopTime-startTime+" millisecond");
 	}
-
+	
 	public static void ticTacToeSimulator() {
 		int[][] board=new int[3][3];
 		if(Math.random()>0.5) {
@@ -356,7 +363,7 @@ public class Utility {
 			return false;
 		}
 	}
-
+	
 	public static ArrayList<String> primeFinderInRange(int minRange,int maxRange) {
 		store=new ArrayList<String>();
 		for(int i=minRange;i<maxRange;i++) {
@@ -406,7 +413,7 @@ public class Utility {
 		}
 		return count;
 	}
-
+	
 	public static int dayOfWeek(int day,int month,int year) {
 		int y0= year-(14-month)/12;
 		int x=y0+y0/4-y0/100+y0/400;
@@ -414,7 +421,7 @@ public class Utility {
 		int dayOfWeek=(day+x+31*m0/12)%7;
 		return dayOfWeek;
 	}
-
+	
 	public static void temperatureConversion(int choice) {
 		System.out.print("Enter the temperature:");
 		double temperature=scan.nextDouble();
@@ -434,7 +441,7 @@ public class Utility {
 		double payment=(principal*ratePerMonth)/1-Math.pow(1+ratePerMonth, -months);
 		System.out.printf("%.2f",payment);
 	}
-
+	
 	public static void sqrt(double number) {
 		double temperory=number;
 		double eplison=1e-15;
@@ -454,10 +461,10 @@ public class Utility {
 		Collections.reverse(storeBinary);
 		/*System.out.println(storeBinary.toString().replace("[","").
 							replace("]","").replace(",", ""));*/
-		swapper(0,7);
+		nibbleSwapper(0,7);
 	}
 	
-	public static void swapper(int startingIndex,int lastIndex) {
+	public static void nibbleSwapper(int startingIndex,int lastIndex) {
 		if(startingIndex>24&&lastIndex>32) {
 			/*System.out.println(storeBinary.toString().replace("[","").
 					replace("]","").replace(",", ""));*/
@@ -470,7 +477,7 @@ public class Utility {
 				storeBinary.set(i, storeBinary.get(j));
 				storeBinary.set(j, temp);
 			}
-			swapper(startingIndex+8,lastIndex+8);
+			nibbleSwapper(startingIndex+8,lastIndex+8);
 		}
 	}
 	
@@ -489,7 +496,7 @@ public class Utility {
 		else
 			System.out.println(number+" is Not!!!power of two");
 	}
-
+	
 	public static void calender(int month,int year) {
 		daysInMonth[1]=28;
 		String[][] calender=new String[7][7];
@@ -555,7 +562,7 @@ public class Utility {
 		}	
 		
 	}
-
+	
 	public static void sortingElapsedTime(long[] array) {
 		for(int i=0;i<array.length;i++) {
 			for(int j=1;j<array.length;j++)
@@ -658,7 +665,7 @@ public class Utility {
 		System.out.println("Time taken is:"+elapsedTime[1]);
 		Utility.sortingElapsedTime(elapsedTime);
 	}
-
+	
 	public static void moneyChangeVendingMachine(int[] denomination,int money,int lastIndex) {
 		if(denomination[lastIndex]<=money) {
 			int remainder=money%denomination[lastIndex];
@@ -673,7 +680,7 @@ public class Utility {
 			moneyChangeVendingMachine(denomination,money,lastIndex-1);
 		}
 	}
-
+	
 	public static void guessingYourNumber(int lowerIndex,int higherIndex) {
 		int middleIndex=(lowerIndex+higherIndex)/2;
 		if(lowerIndex==higherIndex) 
@@ -687,8 +694,8 @@ public class Utility {
 				guessingYourNumber(middleIndex+1, higherIndex);
 		}		
 	}
-
-	public static void readFromFile(String address,String findWord) throws IOException {
+	
+	public static String[] readFromFile(String address) throws IOException {
 		@SuppressWarnings("resource")
 		BufferedReader file=new BufferedReader(new InputStreamReader(new FileInputStream(address)));		
 		String lines=null;
@@ -706,11 +713,10 @@ public class Utility {
 				words.add(newWords.get(j));
 		}
 		cloneWords=words.toArray(new String[words.size()]);
-		bubbleSort(cloneWords);
-		binarySearch(cloneWords,findWord,0,cloneWords.length-1);
-		//System.out.println(Arrays.toString(cloneWords));		
+		/*System.out.println(Arrays.toString(cloneWords));*/
+		return cloneWords;
 	}
-
+	
 	public static <T extends Comparable<T>> void merge(T[] array,int lowerIndex,int middleIndex,int higherIndex) {
 		int sizeOfLeftArray=(middleIndex-lowerIndex)+1;
 		int sizeOfRightArray=higherIndex-middleIndex;
@@ -759,19 +765,92 @@ public class Utility {
 			mergeSort(array,middleIndex+1,higherIndex);
 			merge(array,lowerIndex,middleIndex,higherIndex);
 		}
-	}
+	}	
 
-	/*public static void stringPermutationRecursion(String[] word,int startingIndex,int lastIndex) {
-		String[] newWord=word;
-		
-				
-		
+	public static void stringPermutationRecursion(char[] word,String[] storeWords,int startingIndex,int lastIndex) {
+		if(startingIndex==lastIndex) {
+			System.out.println(Arrays.toString(word)+" "+(incriment+1));
+			storeWords[incriment]=String.copyValueOf(word);
+			incriment++;
+		}	
+		else {
+			for(int i=startingIndex;i<=lastIndex;i++) {
+				swap(word,startingIndex,i);
+				stringPermutationRecursion( word,storeWords, startingIndex+1, lastIndex);
+				swap(word,startingIndex,i);
+			}
+		}
 	}
-	
-	public static void swap(String[] array,int constantIndex,int incrimentalIndex) {
-		String temp=array[constantIndex];
+		
+	public static void swap(char[] array,int constantIndex,int incrimentalIndex) {
+		char temp=array[constantIndex];
 		array[constantIndex]=array[incrimentalIndex];
 		array[incrimentalIndex]=temp;
 		
-	}*/
+	}
+	
+	public static int factorial(int number) {
+		if(number==0||number==1)
+			return 1;
+		else
+			return number=number*factorial(number-1);
+	} 
+
+	public static void checkForWord(String sourceAddress,String findWord) throws IOException {
+		List<String> array=new LinkedList<String>(Arrays.asList(readFromFile(sourceAddress)));
+		if(array.contains(findWord)) {
+			System.out.println("Found the word.....removing from list");
+			array.remove(findWord);
+		}	
+		else {
+			System.out.println("Not Found the word.....Adding the word to list");
+			array.add(findWord);
+		}
+		System.out.println("Enter the file name to which the array is going to be stored:");
+		String destinationAddress=scan.nextLine();
+		FileWriter file=new FileWriter(destinationAddress);
+		PrintWriter writeToFile=new PrintWriter(file);
+		for(String word : array) 
+			writeToFile.write(word+" ");
+		file.close();
+		//System.out.println(array);
+	}
+
+	public static void checkForNumber(String sourceAddress,Integer findNumber) throws IOException {
+		String[] stringArray=readFromFile(sourceAddress);
+		List<Integer> integerArray=new LinkedList<Integer>();
+		for(int i=0;i<stringArray.length;i++)
+			integerArray.add(i, Integer.parseInt(stringArray[i]));
+		if(integerArray.contains(findNumber)) {
+			System.out.println("Found the number.....removing from list");
+			integerArray.remove(findNumber);
+		}	
+		else {
+			System.out.println("Not Found the number.....Adding to list");
+			integerArray.add(findNumber);
+		}
+		Collections.sort(integerArray);
+		System.out.println("Enter the file name to which the array is going to be stored:");
+		String destinationAddress=scan.nextLine();
+		FileWriter file=new FileWriter(destinationAddress);
+		PrintWriter writeToFile=new PrintWriter(file);
+		for(Integer number : integerArray) 
+			writeToFile.write(number+" ");
+		file.close();
+		
+	}
+
+	public static  void simpleBalancedParanthesis(String expression) {
+		Stack<Character> stack=new Stack<Character>();
+		char[] newString=expression.toCharArray();
+		for(int i=0;i<expression.length();) {
+			int counterForPop=0;
+			if(newString[i]==')') {
+				
+			}	
+			else {
+				
+			}
+		}	
+	}
 }

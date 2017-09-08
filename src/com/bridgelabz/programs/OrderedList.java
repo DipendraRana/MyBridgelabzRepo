@@ -1,11 +1,12 @@
 /*********************************************************************
- * purpose : Read in a list of words from File. Then prompt the user
- * 			 to enter a word to search the list. The program reports
- * 			 if the search word is found in the list.
+ * purpose : Read a List of Numbers from a file and arrange it
+ * 			 ascending Order in a Linked List. Take user input for a
+ * 			 number, if found then pop the number out of the list else
+ * 			 insert the number in appropriate position
  *           
  * @author Dipendra Rana
  * @version 1.0
- * @since 5 September 2017          
+ * @since 8 September 2017          
  *********************************************************************/
 
 package com.bridgelabz.programs;
@@ -15,7 +16,7 @@ import java.util.Scanner;
 
 import com.bridgelabz.utility.Utility;
 
-public class SearchingWordInFile {
+public class OrderedList {
 	
 	public static Scanner scan=new Scanner(System.in);
 
@@ -23,11 +24,9 @@ public class SearchingWordInFile {
 		// TODO Auto-generated method stub
 		System.out.println("Enter the address of the file:");
 		String address=scan.nextLine();
-		System.out.println("Enter the word you want to search:");
-		String findWord=scan.next();
-		String[] array=Utility.readFromFile(address);
-		Utility.bubbleSort(array);
-		Utility.binarySearch(array, findWord, 0, array.length-1 );
+		System.out.println("Enter the number you want to search:");
+		int findNumber=scan.nextInt();
+		Utility.checkForNumber(address, findNumber);
 	}
 
 }

@@ -1,11 +1,13 @@
 /*********************************************************************
- * purpose : Read in a list of words from File. Then prompt the user
- * 			 to enter a word to search the list. The program reports
- * 			 if the search word is found in the list.
+ * purpose : Read the Text from a file, split it into words and
+ * 			 arrange it as Linked List. Take a user input to search a
+ * 			 Word in the List. If the Word is not found then add it to
+ * 			 the list, and if it found then remove the word from the
+ * 			 List. In the end save the list into a file.
  *           
  * @author Dipendra Rana
  * @version 1.0
- * @since 5 September 2017          
+ * @since 8 September 2017          
  *********************************************************************/
 
 package com.bridgelabz.programs;
@@ -15,7 +17,7 @@ import java.util.Scanner;
 
 import com.bridgelabz.utility.Utility;
 
-public class SearchingWordInFile {
+public class UnOrderedList {
 	
 	public static Scanner scan=new Scanner(System.in);
 
@@ -25,9 +27,7 @@ public class SearchingWordInFile {
 		String address=scan.nextLine();
 		System.out.println("Enter the word you want to search:");
 		String findWord=scan.next();
-		String[] array=Utility.readFromFile(address);
-		Utility.bubbleSort(array);
-		Utility.binarySearch(array, findWord, 0, array.length-1 );
+		Utility.checkForWord(address, findWord);
 	}
 
 }
